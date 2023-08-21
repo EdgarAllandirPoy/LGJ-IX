@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Auxilia IX.css">
+    
+</head>
+<body>
+
+
+
+    <div class="quiz-container">
+        <center>
+            <h1>Formulário sobre história</h1>
+        </center>
+        <div class="question">
+
+            <p>1. Qual é a capital do Brasil?</p>
+            <img class="imagem"
+                src="https://conteudo.imguol.com.br/c/bol/imagens/b3/2019/04/20/brasilia-16-1555761250727_v2_900x506.jpg">
+            <label><input type="radio" name="q1" value="a"> A) São Paulo</label>
+            <label><input type="radio" name="q1" value="b"> B) Rio de Janeiro</label>
+            <label><input type="radio" name="q1" value="c"> C) Brasília</label>
+        </div>
+        <div class="question">
+            <p>2. Quem era o presidente do brasil na Era vargas?</p>
+            <img class="imagem" src="https://www.palaciopiratini.rs.gov.br/upload/recortes/202105/14010442_7241_GDO.jpg"
+                alt="">
+            <label><input type="radio" name="q2" value="a"> A) Juscelino Vargas</label>
+            <label><input type="radio" name="q2" value="b"> B) Getúlio Vargas</label>
+            <label><input type="radio" name="q2" value="c"> C) Eurico Vargas Dutra</label>
+        </div>
+        <div class="question">
+            <p>3. Quem foi o Imperador do Brasil?</p>
+            <img id="image1"
+                src="https://lh3.googleusercontent.com/-6bsvfcukm14/YfPaIc-Bb0I/AAAAAAAAFcU/6tWFFztjPFUnqeJJVEOiYLdGKjVWSW7qACNcBGAsYHQ/s1600/1643371036632318-0.png"
+                alt="">
+            <label><input type="radio" name="q3" value="a"> A) Pedro Alvares Cabral</label>
+            <label><input type="radio" name="q3" value="b"> B) Maria Leopoldina da Áustria</label>
+            <label><input type="radio" name="q3" value="c"> C) Pedro de Alcântara João Carlos Leopoldo Salvador Bibiano
+                Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga</label>
+        </div>
+        <div class="question">
+            <p>4. Qual foi o período em que a CLT foi criada?</p>
+            <img class="imagem" src="https://www.infoescola.com/wp-content/uploads/2008/04/estado-novo1.jpg">
+            <label><input type="radio" name="q4" value="a"> A) Ditadura militar</label>
+            <label><input type="radio" name="q4" value="b"> B) República velha</label>
+            <label><input type="radio" name="q4" value="c"> C) Estado Novo</label>
+        </div>
+        <div class="question">
+            <p>5. Quem estava no poder na Espanha Franquista de 1939-1975?</p>
+            <img class="imagem"
+                src="https://media.gettyimages.com/id/1219743897/pt/foto/portrait-of-francisco-franco-1941-found-in-the-collection-of-museo-de-bellas-artes-de-bilbao.jpg?s=612x612&w=0&k=20&c=RvqKedZxducg9rLC1PVrERHGUXt2HcKf8ksR55T4FQE=">
+            <label><input type="radio" name="q5" value="a"> A) Carmen Franco</label>
+            <label><input type="radio" name="q5" value="b"> B) Marielle Franco</label>
+            <label><input type="radio" name="q5" value="c"> C) Francisco Franco</label>
+        </div>
+        <div class="butao">
+        <button id="submit-btn">Finalizar</button></div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const submitButton = document.getElementById("submit-btn");
+        const resultDiv = document.getElementById("result");
+
+        submitButton.addEventListener("click", showResult);
+
+        function showResult() {
+            const answers = {
+                q1: document.querySelector("input[name='q1']:checked"),
+                q2: document.querySelector("input[name='q2']:checked"),
+                q3: document.querySelector("input[name='q3']:checked"),
+                q4: document.querySelector("input[name='q4']:checked"),
+                q5: document.querySelector("input[name='q5']:checked")
+            };
+
+            let score = 0;
+
+            if (answers.q1 && answers.q1.value === "c") {
+                score++;
+            }
+
+            if (answers.q2 && answers.q2.value === "b") {
+                score++;
+            }
+
+            if (answers.q3 && answers.q3.value === "c") {
+                score++;
+            }
+
+            if (answers.q4 && answers.q4.value === "c") {
+                score++;
+            }
+
+            if (answers.q5 && answers.q5.value === "c") {
+                score++;
+            }
+
+            resultDiv.innerHTML = `Você acertou ${score} de 5 perguntas.`;
+        }
+    </script>
+</body>
+
+</html>
