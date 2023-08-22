@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Quiz do Ensino Médio</title>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz do Ensino Médio</h1>
+    <div class="question">
+      <h2 id="question-text">Pergunta</h2>
+      <img id="question-image" src="" alt="Imagem da questão">
+      <ul id="options" class="options">
+        <!-- Opções serão preenchidas via JavaScript -->
+      </ul>
+    </div>
+    <div id="result" class="result"></div>
+  </div>
+
+<script>
+const questions = [
+  // Perguntas de Ensino Médio
+  {
+    question: "Qual é a capital do Brasil?",
+    image: "https://conteudo.imguol.com.br/c/bol/imagens/b3/2019/04/20/brasilia-16-1555761250727_v2_900x506.jpg",
+    options: ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
+    answer: 2,
+  },
+  // Perguntas de História
+  {
+    question: "Em que ano ocorreu a Revolução Francesa?",
+    image: "https://cdn.todapolitica.com/imagens/revolucao-francesa-og.jpg",
+    options: ["1776", "1789", "1804", "1820"],
+    answer: 1,
+  },
+  {
+    question: "Quem foi o líder da Revolução Russa de 1917?",
+    image: "https://oestadodaarte.com.br/wp-content/uploads/2017/11/Poster.jpg",
+    options: ["Vladimir Putin", "Joseph Stalin", "Vladimir Lenin", "Mikhail Gorbachev"],
+    answer: 2,
+  },
+  {
+    question: "Quem era o presidente do brasil na Era vargas?",
+    image: "https://www.palaciopiratini.rs.gov.br/upload/recortes/202105/14010442_7241_GDO.jpg",
+    options: ["Getúlio Vargas", " Juscelino Vargas", "Eurico Vargas Dutra", "Júlio Prestes"],
+    answer: 0,
+  },
+  {
+    question: "Quem foi Benito Mussolini?",
+    image: "https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.FGL.88596450.7055475/5466409.jpg",
+    options: ["Presidente Líbio", "Rei grego", "General Romano", "Duce Fascista Italiano"],
+    answer: 3,
+  },
+  
+];
+
+const questionText = document.getElementById("question-text");
+const questionImage = document.getElementById("question-image");
+const optionsList = document.getElementById("options");
+const resultDiv = document.getElementById("result");
+
+let currentQuestionIndex = 0;
+let score = 0;
+let chances = 2;
+
+function displayQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  questionText.textContent = `Questão ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+  questionImage.src = currentQuestion.image;
+
+  optionsList.innerHTML = "";
+  currentQuestion.options.forEach((option, index) => {
+    const li = document.createElement("li");
+    li.textContent = option;
+    li.addEventListener("click", () => checkAnswer(index));
+    optionsList.appendChild(li);
+  });
+}
+
+function checkAnswer(selectedIndex) {
+  const currentQuestion = questions[currentQuestionIndex];
+  if (selectedIndex === currentQuestion.answer) {
+    score += 10;
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion();
+    } else {
+      resultDiv.innerHTML = `<h2>Parabéns! Pontuação final: ${score}</h2>`;
+    }
+  } else {
+    chances--;
+    if (chances === 0) {
+      resultDiv.innerHTML = `<h2>Fim do Quiz. Pontuação final: ${score}</h2>`;
+    } else {
+      alert("Resposta incorreta. Você tem mais uma chance.");
+    }
+  }
+}
+
+displayQuestion();
+
+  </script>
+</body>
+</html>
